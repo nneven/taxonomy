@@ -147,7 +147,7 @@ const components = {
       {...props}
     />
   ),
-  Image,
+  Image: ({ src, alt, ...props }) => <Image src={src} alt={alt} {...props} />,
   Callout,
   Card: MdxCard,
 }

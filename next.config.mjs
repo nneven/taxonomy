@@ -6,7 +6,7 @@ import "./env.mjs"
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ["avatars.githubusercontent.com", "logowik.com"],
   },
   experimental: {
     serverComponentsExternalPackages: ["@prisma/client"],
