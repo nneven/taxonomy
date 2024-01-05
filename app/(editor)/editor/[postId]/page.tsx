@@ -6,7 +6,6 @@ import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Editor } from "@/components/editor"
 
 async function getPostForUser(postId: Post["id"], userId: User["id"]) {
