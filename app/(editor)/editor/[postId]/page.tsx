@@ -35,16 +35,18 @@ export default async function EditorPage({ params }: EditorPageProps) {
     notFound()
   }
 
-  async function upload(formData) {
+  async function uploadFile(formData: FormData) {
     "use server"
-    const file = formData.get("file") as File
-    console.log("name:", file.name, "size:", file.size)
+    const files = formData.getAll("file") as File[]
+    files.forEach((file) => {
+      console.log("name:", file.name, "size:", file.size)
+    })
   }
 
   return (
     <>
-      <form className="ml-auto flex gap-2" action={upload}>
-        <Input type="file" name="file" />
+      <form className="ml-auto flex gap-2" action={uploadFile}>
+        <Input type="file" name="file" multiple />
         <Button className="w-fit" variant="outline">
           Upload
         </Button>
