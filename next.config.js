@@ -1,10 +1,11 @@
-import { withContentlayer } from "next-contentlayer"
+import("./env.mjs")
 
-import "./env.mjs"
+const { withContentlayer } = require("next-contentlayer")
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   images: {
     domains: ["avatars.githubusercontent.com", "1000logos.net"],
   },
@@ -14,4 +15,4 @@ const nextConfig = {
   },
 }
 
-export default withContentlayer(nextConfig)
+module.exports = withContentlayer(nextConfig)
