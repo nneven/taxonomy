@@ -37,18 +37,25 @@ export default async function IndexPage() {
 
   return (
     <>
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute bottom-0 right-0 z-[-1] h-full w-full object-cover opacity-25"
+        src="videos/abstract-4.mov"
+      />
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <div className="rounded-2xl bg-muted px-4 py-2 text-sm font-medium">
             Coming Soon
           </div>
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-            Unlock the Future of Investment Research and Portfolio Monitoring
+            Elevating Investment Intelligence with AI Insights
           </h1>
           <p className="max-w-[48rem] py-6 leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            Leverage AI to maximize the use of data to optimize fund and manager
-            selection, standardize LP reporting, and monitor opportunities and
-            risks in your portfolios.
+            Transforming complex datasets into clear, actionable insights -
+            empowering investors to fully harness the abundant data of the
+            financial world.
           </p>
           <div className="space-x-4">
             <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
