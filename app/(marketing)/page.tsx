@@ -59,11 +59,16 @@ export default async function IndexPage() {
             financial world.
           </p>
           <div className="space-x-4">
-            <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+            <Link
+              href=""
+              //href="/login"
+              className={cn(buttonVariants({ size: "lg" }))}
+            >
               Join Waitlist
             </Link>
             <Link
-              href={siteConfig.links.github}
+              href=""
+              // href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
               className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
