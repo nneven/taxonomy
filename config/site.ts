@@ -2,12 +2,11 @@ import { SiteConfig } from "types"
 
 export const siteConfig: SiteConfig = {
   name: "Vantager",
-  description:
-    "An open source application built using the new router, server components and everything new in Next.js 13.",
-  url: "https://tx.shadcn.com",
-  ogImage: "https://tx.shadcn.com/og.jpg",
+  description: "Elevating Investment Intelligence with AI Insights",
+  url: "https://vantager.co",
+  ogImage: "",
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/taxonomy",
+    twitter: "",
+    github: "",
   },
 }
