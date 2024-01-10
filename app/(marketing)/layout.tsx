@@ -21,7 +21,7 @@ export default async function MarketingLayout({
           <nav>
             <Link
               href="/login"
-              className={cn(buttonVariants({ variant: "secondary" }), "px-4")}
+              className={cn(buttonVariants({ variant: "outline" }), "px-4")}
             >
               Login
             </Link>
