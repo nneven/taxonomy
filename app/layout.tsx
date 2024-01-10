@@ -77,7 +77,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
-          "bg-background font-sans antialiased supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh]",
+          "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
           fontHeading.variable
         )}
