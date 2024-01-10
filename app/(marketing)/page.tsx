@@ -41,10 +41,11 @@ export default async function IndexPage() {
         autoPlay
         loop
         muted
+        playsInline
         className="absolute bottom-0 right-0 z-[-1] h-full w-full object-cover opacity-10"
         src="videos/abstract.mov"
       />
-      <section className="flex h-[calc(100vh-10rem)] items-center space-y-6">
+      <section className="flex h-[80vh] items-center space-y-6 sm:h-[calc(100vh-10rem)]">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <div className="rounded-2xl bg-background px-4 py-2 text-sm font-medium">
             Coming Soon
