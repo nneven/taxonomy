@@ -45,8 +45,6 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Missing template id")
         }
 
-        console.log(url)
-
         const result = await postmarkClient.sendEmailWithTemplate({
           TemplateId: parseInt(templateId),
           To: identifier,
