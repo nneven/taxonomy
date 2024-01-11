@@ -60,14 +60,14 @@ export default async function IndexPage() {
           </p>
           <div className="space-x-4">
             <Link
-              href=""
+              href="/"
               //href="/login"
               className={cn(buttonVariants({ size: "lg" }))}
             >
               Join Waitlist
             </Link>
             <Link
-              href=""
+              href="/"
               // href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
