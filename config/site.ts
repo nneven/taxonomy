@@ -4,9 +4,9 @@ export const siteConfig: SiteConfig = {
   name: "Vantager",
   description: "Elevating Investment Intelligence with AI Insights",
   url: "https://vantager.co",
-  ogImage: "",
+  ogImage: "/",
   links: {
-    twitter: "",
-    github: "",
+    twitter: "/",
+    github: "/",
   },
 }
