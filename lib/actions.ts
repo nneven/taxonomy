@@ -15,7 +15,7 @@ export async function uploadFile(prevState: any, formData: FormData) {
   )
 
   const text = texts.join("\n")
-  const content = chat(text)
+  const content = await chat(text)
 
   return { content }
 }
@@ -27,7 +27,7 @@ async function chat(content: string) {
     messages: [
       {
         role: "system",
-        content: "Summarize the following text.",
+        content: "Summarize the following text using markdown.",
       },
       { role: "user", content },
     ],
