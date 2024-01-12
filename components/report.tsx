@@ -5,9 +5,11 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Post } from "@prisma/client"
+import { useFormState } from "react-dom"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
+import { uploadFile } from "@/lib/actions"
 import { cn } from "@/lib/utils"
 import { postPatchSchema } from "@/lib/validations/post"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -21,6 +23,10 @@ interface ReportProps {
 
 type FormData = z.infer<typeof postPatchSchema>
 
+const initialState = {
+  message: "",
+}
+
 export function Report({ post }: ReportProps) {
   const { register, handleSubmit } = useForm<FormData>({
     resolver: zodResolver(postPatchSchema),
@@ -28,6 +34,7 @@ export function Report({ post }: ReportProps) {
   const router = useRouter()
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
   const [isMounted, setIsMounted] = React.useState<boolean>(false)
+  const [state, formAction] = useFormState(uploadFile, initialState)
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -70,23 +77,16 @@ export function Report({ post }: ReportProps) {
     return null
   }
 
-  // async function uploadFile(formData: FormData) {
-  //   "use server"
-  //   const files = formData.getAll("file") as File[]
-  //   files.forEach((file) => {
-  //     console.log("name:", file.name, "size:", file.size)
-  //   })
-  // }
-
   return (
     <>
       {!post.content && (
         <div className="flex h-full">
-          <form className="m-auto flex gap-2" action={"uploadFile"}>
+          <form className="m-auto flex gap-2" action={formAction}>
             <Input type="file" name="file" multiple />
             <Button className="w-fit" variant="outline">
               Upload
             </Button>
+            <p>{state?.message}</p>
           </form>
         </div>
       )}

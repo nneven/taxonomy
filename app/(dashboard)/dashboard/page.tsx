@@ -5,8 +5,8 @@ import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
-import { PostCreateButton } from "@/components/post-create-button"
 import { PostItem } from "@/components/post-item"
+import { ReportCreateButton } from "@/components/report-create-button"
 import { DashboardShell } from "@/components/shell"
 
 export const metadata = {
@@ -37,8 +37,8 @@ export default async function DashboardPage() {
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="Posts" text="Create and manage posts.">
-        <PostCreateButton />
+      <DashboardHeader heading="Reports" text="Create and manage reports.">
+        <ReportCreateButton />
       </DashboardHeader>
       <div>
         {posts?.length ? (
@@ -50,11 +50,11 @@ export default async function DashboardPage() {
         ) : (
           <EmptyPlaceholder>
             <EmptyPlaceholder.Icon name="post" />
-            <EmptyPlaceholder.Title>No posts created</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Title>No reports created</EmptyPlaceholder.Title>
             <EmptyPlaceholder.Description>
-              You don&apos;t have any posts yet. Start creating content.
+              You don&apos;t have any reports yet. Start creating content.
             </EmptyPlaceholder.Description>
-            <PostCreateButton variant="outline" />
+            <ReportCreateButton variant="outline" />
           </EmptyPlaceholder>
         )}
       </div>
