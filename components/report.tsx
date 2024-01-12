@@ -3,14 +3,11 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import EditorJS from "@editorjs/editorjs"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Post } from "@prisma/client"
 import { useForm } from "react-hook-form"
-import TextareaAutosize from "react-textarea-autosize"
 import * as z from "zod"
 
-import "@/styles/editor.css"
 import { cn } from "@/lib/utils"
 import { postPatchSchema } from "@/lib/validations/post"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -18,17 +15,16 @@ import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
-interface EditorProps {
+interface ReportProps {
   post: Pick<Post, "id" | "title" | "content" | "published">
 }
 
 type FormData = z.infer<typeof postPatchSchema>
 
-export function Report({ post }: EditorProps) {
+export function Report({ post }: ReportProps) {
   const { register, handleSubmit } = useForm<FormData>({
     resolver: zodResolver(postPatchSchema),
   })
-  const ref = React.useRef<EditorJS>()
   const router = useRouter()
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
   const [isMounted, setIsMounted] = React.useState<boolean>(false)
@@ -39,19 +35,8 @@ export function Report({ post }: EditorProps) {
     }
   }, [])
 
-  React.useEffect(() => {
-    if (isMounted) {
-      return () => {
-        ref.current?.destroy()
-        ref.current = undefined
-      }
-    }
-  }, [isMounted])
-
   async function onSubmit(data: FormData) {
     setIsSaving(true)
-
-    const blocks = await ref.current?.save()
 
     const response = await fetch(`/api/posts/${post.id}`, {
       method: "PATCH",
@@ -60,7 +45,7 @@ export function Report({ post }: EditorProps) {
       },
       body: JSON.stringify({
         title: data.title,
-        content: blocks,
+        content: "",
       }),
     })
 
@@ -105,7 +90,7 @@ export function Report({ post }: EditorProps) {
           </form>
         </div>
       )}
-      {post.content && (
+      {!!post.content && (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full gap-10">
             <div className="flex w-full items-center justify-between">
@@ -129,24 +114,6 @@ export function Report({ post }: EditorProps) {
                 )}
                 <span>Save</span>
               </button>
-            </div>
-            <div className="prose prose-stone mx-auto w-[800px] dark:prose-invert">
-              <TextareaAutosize
-                autoFocus
-                id="title"
-                defaultValue={post.title}
-                placeholder="Post title"
-                className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
-                {...register("title")}
-              />
-              <div id="editor" className="min-h-[500px]" />
-              <p className="text-sm text-gray-500">
-                Use{" "}
-                <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">
-                  Tab
-                </kbd>{" "}
-                to open the command menu.
-              </p>
             </div>
           </div>
         </form>
