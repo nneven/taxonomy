@@ -95,7 +95,7 @@ export function Report({ post }: EditorProps) {
 
   return (
     <>
-      {true && (
+      {!post.content && (
         <div className="flex h-full">
           <form className="m-auto flex gap-2" action={"uploadFile"}>
             <Input type="file" name="file" multiple />
@@ -105,7 +105,7 @@ export function Report({ post }: EditorProps) {
           </form>
         </div>
       )}
-      {false && (
+      {post.content && (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full gap-10">
             <div className="flex w-full items-center justify-between">
