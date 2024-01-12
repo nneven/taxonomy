@@ -10,7 +10,8 @@ const nextConfig = {
     domains: ["avatars.githubusercontent.com", "1000logos.net"],
   },
   experimental: {
-    serverActions: true,
+    // serverActions: true,
+    serverComponentsExternalPackages: ["pdf-parse"],
   },
 }
 

@@ -23,10 +23,6 @@ interface ReportProps {
 
 type FormData = z.infer<typeof postPatchSchema>
 
-const initialState = {
-  message: "",
-}
-
 export function Report({ post }: ReportProps) {
   const { register, handleSubmit } = useForm<FormData>({
     resolver: zodResolver(postPatchSchema),
@@ -34,7 +30,7 @@ export function Report({ post }: ReportProps) {
   const router = useRouter()
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
   const [isMounted, setIsMounted] = React.useState<boolean>(false)
-  const [state, formAction] = useFormState(uploadFile, initialState)
+  const [state, formAction] = useFormState(uploadFile, null)
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -79,18 +75,17 @@ export function Report({ post }: ReportProps) {
 
   return (
     <>
-      {!post.content && (
+      {!state?.content && (
         <div className="flex h-full">
           <form className="m-auto flex gap-2" action={formAction}>
             <Input type="file" name="file" multiple />
             <Button className="w-fit" variant="outline">
               Upload
             </Button>
-            <p>{state?.message}</p>
           </form>
         </div>
       )}
-      {!!post.content && (
+      {!!state?.content && (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full gap-10">
             <div className="flex w-full items-center justify-between">
@@ -115,6 +110,7 @@ export function Report({ post }: ReportProps) {
                 <span>Save</span>
               </button>
             </div>
+            <p>{state.content}</p>
           </div>
         </form>
       )}
