@@ -4,7 +4,7 @@ import { Post, User } from "@prisma/client"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
-import { Editor } from "@/components/editor"
+import { Report } from "@/components/report"
 
 async function getPostForUser(postId: Post["id"], userId: User["id"]) {
   return await db.post.findFirst({
@@ -34,7 +34,7 @@ export default async function EditorPage({ params }: EditorPageProps) {
 
   return (
     <>
-      <Editor
+      <Report
         post={{
           id: post.id,
           title: post.title,
