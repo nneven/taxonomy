@@ -15,10 +15,10 @@ import * as z from "zod"
 import { uploadFile } from "@/lib/actions"
 import { cn } from "@/lib/utils"
 import { postPatchSchema } from "@/lib/validations/post"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { buttonVariants } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
+import { SourceUpload } from "@/components/source-upload"
 
 interface ReportProps {
   post: Pick<Post, "id" | "title" | "content" | "published">
@@ -92,16 +92,7 @@ export function Report({ post }: ReportProps) {
 
   return (
     <>
-      {!state.content && (
-        <div className="flex h-full">
-          <form className="m-auto flex gap-2" action={formAction}>
-            <Input type="file" name="files" multiple />
-            <Button className="w-fit" variant="outline">
-              Upload
-            </Button>
-          </form>
-        </div>
-      )}
+      {!state.content && <SourceUpload formAction={formAction} />}
       {!!state.content && (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid w-full gap-10">

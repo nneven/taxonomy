@@ -16,7 +16,8 @@ export async function uploadFile(prevState: any, formData: FormData) {
   )
 
   const text = texts.join("\n")
-  const content = await chat(text)
+  // const content = await chat(text)
+  const content = text
 
   return { content }
 }
