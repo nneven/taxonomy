@@ -9,6 +9,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
 import { useFormState } from "react-dom"
 import { useForm } from "react-hook-form"
+import Markdown from "react-markdown"
 import * as z from "zod"
 
 import { uploadFile } from "@/lib/actions"
@@ -25,7 +26,7 @@ interface ReportProps {
 
 type FormData = z.infer<typeof postPatchSchema>
 
-export async function Report({ post }: ReportProps) {
+export function Report({ post }: ReportProps) {
   const { register, handleSubmit } = useForm<FormData>({
     resolver: zodResolver(postPatchSchema),
   })
@@ -33,20 +34,20 @@ export async function Report({ post }: ReportProps) {
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
   const [isMounted, setIsMounted] = React.useState<boolean>(false)
   const [state, formAction] = useFormState(uploadFile, { content: null })
-  const [mdxSource, setMdxSource] =
-    React.useState<MDXRemoteSerializeResult | null>(null)
+  // const [mdxSource, setMdxSource] =
+  //   React.useState<MDXRemoteSerializeResult | null>(null)
 
-  React.useEffect(() => {
-    const serializeContent = async () => {
-      const serialized = await serialize(state.content, {
-        mdxOptions: {
-          development: process.env.NODE_ENV === "development",
-        },
-      })
-      setMdxSource(serialized)
-    }
-    serializeContent()
-  }, [state.content])
+  // React.useEffect(() => {
+  //   const serializeContent = async () => {
+  //     const serialized = await serialize(state.content, {
+  //       mdxOptions: {
+  //         development: process.env.NODE_ENV === "development",
+  //       },
+  //     })
+  //     setMdxSource(serialized)
+  //   }
+  //   serializeContent()
+  // }, [state.content])
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -126,7 +127,10 @@ export async function Report({ post }: ReportProps) {
                 <span>Save</span>
               </button>
             </div>
-            {mdxSource && <MDXRemote {...mdxSource} />}
+            <div className="prose prose-stone mx-auto w-[800px] dark:prose-invert">
+              {/* {mdxSource && <MDXRemote {...mdxSource} />} */}
+              <Markdown>{state.content}</Markdown>
+            </div>
           </div>
         </form>
       )}
