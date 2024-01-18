@@ -127,7 +127,7 @@ export function Report({ post }: ReportProps) {
                 <span>Save</span>
               </button>
             </div>
-            <div className="prose prose-stone mx-auto w-[800px] dark:prose-invert">
+            <div className="prose prose-stone mx-auto max-w-4xl dark:prose-invert">
               {/* {mdxSource && <MDXRemote {...mdxSource} />} */}
               <Markdown>{state.content}</Markdown>
             </div>
