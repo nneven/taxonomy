@@ -5,7 +5,20 @@ const { withContentlayer } = require("next-contentlayer")
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["avatars.githubusercontent.com", "1000logos.net"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "1000logos.net",
+      },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+      },
+    ],
   },
   experimental: {
     serverComponentsExternalPackages: ["pdf-parse"],
