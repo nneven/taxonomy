@@ -14,7 +14,7 @@ export function PostItem({ post }: PostItemProps) {
     <div className="flex items-center justify-between p-4">
       <div className="grid gap-1">
         <Link
-          href={`/editor/${post.id}`}
+          href={`/report/${post.id}`}
           className="font-semibold hover:underline"
         >
           {post.title}
