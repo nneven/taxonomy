@@ -5,6 +5,8 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Post } from "@prisma/client"
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote"
+import { serialize } from "next-mdx-remote/serialize"
 import { useFormState } from "react-dom"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -23,7 +25,7 @@ interface ReportProps {
 
 type FormData = z.infer<typeof postPatchSchema>
 
-export function Report({ post }: ReportProps) {
+export async function Report({ post }: ReportProps) {
   const { register, handleSubmit } = useForm<FormData>({
     resolver: zodResolver(postPatchSchema),
   })
@@ -31,6 +33,20 @@ export function Report({ post }: ReportProps) {
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
   const [isMounted, setIsMounted] = React.useState<boolean>(false)
   const [state, formAction] = useFormState(uploadFile, { content: null })
+  const [mdxSource, setMdxSource] =
+    React.useState<MDXRemoteSerializeResult | null>(null)
+
+  React.useEffect(() => {
+    const serializeContent = async () => {
+      const serialized = await serialize(state.content, {
+        mdxOptions: {
+          development: process.env.NODE_ENV === "development",
+        },
+      })
+      setMdxSource(serialized)
+    }
+    serializeContent()
+  }, [state.content])
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -110,7 +126,7 @@ export function Report({ post }: ReportProps) {
                 <span>Save</span>
               </button>
             </div>
-            <p>{state.content}</p>
+            {mdxSource && <MDXRemote {...mdxSource} />}
           </div>
         </form>
       )}
