@@ -60,15 +60,15 @@ export default async function IndexPage() {
           </p>
           <div className="space-x-4">
             <Link
-              href="/"
-              //href="/login"
+              href="https://calendly.com/vantager/30min"
+              target="_blank"
+              rel="noreferrer"
               className={cn(buttonVariants({ size: "lg" }))}
             >
               Join Waitlist
             </Link>
             <Link
-              href="/"
-              // href={siteConfig.links.github}
+              href="https://calendly.com/vantager/30min"
               target="_blank"
               rel="noreferrer"
               className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
