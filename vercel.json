@@ -1,6 +1,6 @@
 {
   "functions": {
-    "app/report/[postId]/**/*": {
+    "app/**/*.tsx": {
       "maxDuration": 300
     }
   }
