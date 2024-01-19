@@ -1,6 +1,6 @@
 {
   "functions": {
-    "app/report/[postId]/page.tsx": {
+    "app/api/report/**/*": {
       "maxDuration": 300
     }
   }
