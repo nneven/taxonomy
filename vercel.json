@@ -1,6 +1,6 @@
 {
   "functions": {
-    "app/report/**/*": {
+    "app/**/*": {
       "maxDuration": 300
     }
   }
