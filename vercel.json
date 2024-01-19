@@ -1,6 +1,6 @@
 {
   "functions": {
-    "report/**/*.tsx": {
+    "/report/**/*.tsx": {
       "maxDuration": 300
     }
   }
