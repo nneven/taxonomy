@@ -4,7 +4,9 @@ import { format } from "date-fns"
 import { useFormStatus } from "react-dom"
 
 import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Table,
   TableBody,
@@ -68,6 +70,7 @@ export function SourceUpload({ formAction }: SourceUploadProps) {
         <Input
           type="file"
           name="files"
+          required
           multiple
           accept="application/pdf"
           onChange={handleInputChange}
@@ -75,10 +78,10 @@ export function SourceUpload({ formAction }: SourceUploadProps) {
           id="file-upload"
         />
         <Button asChild variant="outline">
-          <label htmlFor="file-upload">
+          <Label htmlFor="file-upload">
             <Icons.add className="mr-2 h-4 w-4" />
             Upload Files
-          </label>
+          </Label>
         </Button>
         <SubmitButton />
       </form>
