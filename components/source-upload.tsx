@@ -1,7 +1,7 @@
 import * as React from "react"
 import Image from "next/image"
 import { format } from "date-fns"
-import { Plus } from "lucide-react"
+import { useFormStatus } from "react-dom"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -15,6 +15,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Icons } from "@/components/icons"
 
 interface SourceUploadProps {
   formAction: (payload: globalThis.FormData) => void
@@ -43,6 +44,24 @@ export function SourceUpload({ formAction }: SourceUploadProps) {
     setSources(sources)
   }
 
+  const SubmitButton = () => {
+    "use client"
+    const { pending } = useFormStatus()
+
+    return (
+      <Button type="submit" disabled={pending}>
+        {pending ? (
+          <>
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            <span>Generating Report</span>
+          </>
+        ) : (
+          <span>Generate Report</span>
+        )}
+      </Button>
+    )
+  }
+
   return (
     <div className="mx-auto flex h-full w-full max-w-2xl flex-col justify-center gap-y-4">
       <form className="flex w-full justify-between" action={formAction}>
@@ -57,11 +76,11 @@ export function SourceUpload({ formAction }: SourceUploadProps) {
         />
         <Button asChild variant="outline">
           <label htmlFor="file-upload">
-            <Plus className="mr-2 h-4 w-4" />
+            <Icons.add className="mr-2 h-4 w-4" />
             Upload Files
           </label>
         </Button>
-        <Button type="submit">Generate Report</Button>
+        <SubmitButton />
       </form>
       {true && (
         <Table>
