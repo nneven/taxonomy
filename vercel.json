@@ -1,6 +1,6 @@
 {
   "functions": {
-    "app/report/*": {
+    "report/[postId]": {
       "maxDuration": 300
     }
   }
