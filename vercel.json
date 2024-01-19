@@ -1,6 +1,6 @@
 {
   "functions": {
-    "app/api/report/**/*": {
+    "app/api/**/*": {
       "maxDuration": 300
     }
   }
